@@ -52,6 +52,7 @@ const thumbnailContainer = document.querySelector(".container-thumbnails");
 const prevArrow = document.querySelector('#left');
 const nextArrow = document.querySelector('#right');
 const pouseStartButton = document.getElementById('pouse-start-interval');
+const cangeDirectionbutton = document.getElementById('cange-direction')
 let activeImg = 1;
 let autoplayStatus = false;
 
@@ -140,12 +141,23 @@ const selectNextElement = () => {
   
 };
 
-let cangeImgInterval
-const startInterval = () => {
-  autoplayStatus = !autoplayStatus
-  console.log(autoplayStatus)
+let cangeImgInterval;
+let isDirectionNext
+
+const cangeDirectionSlide = () =>{
+  isDirectionNext = !isDirectionNext
+  clearInterval(cangeImgInterval)
+  startInterval(isDirectionNext)
+}
+
+const startInterval = (isDirectionNext) => {
+  autoplayStatus = !autoplayStatus;
   cangeImgInterval = setInterval(() => { 
-    selectNextElement()
+    if(isDirectionNext){
+      selectNextElement();
+    }else {
+      selectPreviousElment();
+    }
   }, 1000);
   
 }
@@ -154,7 +166,7 @@ const sliderStart = () => {
   images.forEach((currentImage, index)=> {
     createHTMLElement(currentImage, index);
   });  
-  startInterval()
+  startInterval(isDirectionNext)
 };
 
 sliderStart();
@@ -170,7 +182,8 @@ pouseStartButton.addEventListener('click', ()=> {
     clearInterval(cangeImgInterval)
     pouseStartButton.innerHTML = '<i class="fa-regular fa-circle-play"></i>'
   }else{
-    startInterval()
+    startInterval(isDirectionNext)
     pouseStartButton.innerHTML = '<i class="fa-regular fa-circle-pause"></i>'
   }
 })
+cangeDirectionbutton.addEventListener('click', cangeDirectionSlide)
