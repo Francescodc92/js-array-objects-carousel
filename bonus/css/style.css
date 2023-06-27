@@ -157,14 +157,20 @@ img.img.active {
   margin-inline: auto;
 }
 
-.controller-container button#pouse-start-interval{
+.controller-container button#pouse-start-interval,
+.controller-container button#cange-direction{
   font-size: 3rem;
   padding: 0.5rem;
   border: none;
   cursor: pointer;
   border-radius: 50%;
 }
+.controller-container button#cange-direction{
+  font-size: 2.4rem;
+  padding-inline: 1rem;
+}
 
-.controller-container button#pouse-start-interval:hover{
+.controller-container button#pouse-start-interval:hover,
+.controller-container button#cange-direction:hover{
    background-color: #ccc;
 }

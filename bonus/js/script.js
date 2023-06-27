@@ -1,12 +1,18 @@
 /*
 - bonus 1 Aggiungere le thumbnails (sottoforma di miniatura) ed al click attivare l'immagine corrispondente.
+
 - bonus 2 Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) l'immagine attiva dovrà cambiare alla successiva.
+
+- bonus 3 Aggiungere bottoni di start/stop e di inversione del meccanismo di autoplay.
   RAGIONAMENTO BASE: bonus 2
 - al caricamento della pagina dovrà partire un interval che chiamerà la funzione che che serve a selezionare l'img successiva 
 
 RAGIONAMENTO BASE: bonus 3
+1 aggiungere un bottone all'html al click del quale l'interval si stopperà e quindi le img smetteranno di scorrere, al secondo click l'intervallo partirà facendo scorrere di nuovo le img
+  - creare una variabile che controlla l'intervallo , se questa variabile è vera l'intervallo partirà altrimenti si stopperà 
 
-
+2 aggiungere un nuovo bottone che regolerà l'andamento dello slider 
+  - creare una variabile che decida l'andamento , se la variabile e vera l'intervallo chiamerà la funzione per andare avanti altrimenti quella per andare indietro
 */
 /*-------------
 DATA
@@ -43,9 +49,11 @@ Global variables
 ------------- */
 const carouselContainer = document.querySelector(".img-container");
 const thumbnailContainer = document.querySelector(".container-thumbnails");
-let activeImg = 1
-const prevArrow = document.querySelector('#left')
-const nextArrow = document.querySelector('#right')
+const prevArrow = document.querySelector('#left');
+const nextArrow = document.querySelector('#right');
+const pouseStartButton = document.getElementById('pouse-start-interval');
+let activeImg = 1;
+let autoplayStatus = false;
 
 const createHTMLElement = (currentImage, index) => {
   const imgWrapper = document.createElement("div");
@@ -104,7 +112,7 @@ const selectPreviousElment = () => {
   })
   previousText.classList.add('active')
   
-}
+};
 
 const selectNextElement = () => {
   const activeImgBox = document.querySelectorAll(".img_" + activeImg)
@@ -130,12 +138,16 @@ const selectNextElement = () => {
   })
   previousText.classList.add('active')
   
-}
+};
 
+let cangeImgInterval
 const startInterval = () => {
-  const cangeImgInterval = setInterval(() => { 
+  autoplayStatus = !autoplayStatus
+  console.log(autoplayStatus)
+  cangeImgInterval = setInterval(() => { 
     selectNextElement()
   }, 1000);
+  
 }
 
 const sliderStart = () => {
@@ -143,14 +155,22 @@ const sliderStart = () => {
     createHTMLElement(currentImage, index);
   });  
   startInterval()
-}
+};
 
-sliderStart()
+sliderStart();
 /*-------------
  events
 --------------*/
 
 prevArrow.addEventListener('click', selectPreviousElment)
-
 nextArrow.addEventListener('click', selectNextElement)
-
+pouseStartButton.addEventListener('click', ()=> {
+  if(autoplayStatus) {
+    autoplayStatus = !autoplayStatus
+    clearInterval(cangeImgInterval)
+    pouseStartButton.innerHTML = '<i class="fa-regular fa-circle-play"></i>'
+  }else{
+    startInterval()
+    pouseStartButton.innerHTML = '<i class="fa-regular fa-circle-pause"></i>'
+  }
+})
