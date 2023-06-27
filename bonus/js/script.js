@@ -1,14 +1,11 @@
 /*
- - milestone0. Come nel primo carosello realizzato, focalizziamoci prima sulla creazione del markup statico: costruiamo il container e inseriamo l'immagine grande in modo da poter stilare lo slider.
-    
-  - milestone1. Ora rimuoviamo i contenuti statici e usiamo l'array di oggetti letterali per popolare dinamicamente il carosello.
-  Al click dell'utente sulle frecce verso sinistra o destra, l'immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo.
-  
-  - milestone2. Aggiungere il "ciclo infinito" del carosello. Ovvero se la miniatura attiva è la prima e l'utente clicca la freccia verso destra, la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura se l'utente clicca la freccia verso sinistra.
+- bonus 1 Aggiungere le thumbnails (sottoforma di miniatura) ed al click attivare l'immagine corrispondente.
+- bonus 2 Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) l'immagine attiva dovrà cambiare alla successiva.
+  RAGIONAMENTO BASE: bonus 2
+- al caricamento della pagina dovrà partire un interval che chiamerà la funzione che che serve a selezionare l'img successiva 
 
-  RAGIONAMENTO BASE:
-  1. refatturare il codice in maniera da farlo funzionare con la nuova struttura di dati cosi facendo praticamente le prime milestone saranno completate 
-  2. modificare il rendering dell'img aggiungendo all'img grande il testo 
+RAGIONAMENTO BASE: bonus 3
+
 
 */
 /*-------------
