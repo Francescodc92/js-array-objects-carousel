@@ -135,10 +135,17 @@ const selectNextElement = () => {
   
 }
 
+const startInterval = () => {
+  const cangeImgInterval = setInterval(() => { 
+    selectNextElement()
+  }, 1000);
+}
+
 const sliderStart = () => {
   images.forEach((currentImage, index)=> {
     createHTMLElement(currentImage, index);
   });  
+  startInterval()
 }
 
 sliderStart()

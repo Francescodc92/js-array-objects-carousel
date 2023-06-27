@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+.carousel-container {
+  max-width: 100rem;
+  height: 50rem;
+  margin: 5rem auto;
+  display: flex;
+}
+
+
+
+.img-container {
+  width: 75%;
+  position: relative;
+}
+
+.text-container{
+  color: #fff;
+  max-width: 40rem;
+  position: absolute;
+  padding: 2rem;
+  border-radius: 1rem;
+  z-index: 2;
+  bottom: 5rem;
+  right: 1.5rem;
+  display: none;
+  text-align: right;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.text-container.active{
+  display: block;
+}
+
+.text-container h3{
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.text-container p{
+  font-size: 1.8rem;
+}
+
+
+.arrow-left,
+.arrow-right {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: translateX(-50%);
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.arrow-left {
+  top: 1.5rem;
+  left: 50%;
+}
+.arrow-right {
+  bottom: 1.5rem;
+  left: 50%;
+}
+
+img.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+  object-position: center;
+  position: relative;
+  z-index: 1;
+}
+
+img.img.active {
+  display: block;
+}
+
+.container-thumbnails {
+  width: 25%;
+  height: 100%;
+  order: 2;
+  overflow: hidden;
+  position: relative;
+}
+
+.container-thumbnails > .img-wrapper {
+  width: 100%;
+  display: block;
+  height: calc(100% / 5);
+  object-fit: cover;
+  position: relative;
+}
+
+.container-thumbnails > .img-wrapper img.img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.container-thumbnails .img-wrapper > img.active {
+  border: 4px solid #ccc;
+}
+
+.container-thumbnails .img-wrapper.none {
+  display: none;
+}
+
+.container-thumbnails > .img-wrapper::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.container-thumbnails > .img-wrapper:has(img.active):after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
