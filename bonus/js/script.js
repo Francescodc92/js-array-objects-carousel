@@ -152,7 +152,7 @@ const startInterval = (isDirectionNext) => {
     }else {
       selectPreviousElment();
     }
-  }, 1000);
+  }, 3000);
   
 }
 
