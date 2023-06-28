@@ -55,6 +55,8 @@ const pouseStartButton = document.getElementById('pouse-start-interval');
 const cangeDirectionbutton = document.getElementById('cange-direction')
 let activeImg = 1;
 let autoplayStatus = false;
+let cangeImgInterval;
+let isDirectionNext = true;
 
 const createHTMLElement = (currentImage, index) => {
   const imgWrapper = document.createElement("div");
@@ -141,17 +143,9 @@ const selectNextElement = () => {
   
 };
 
-let cangeImgInterval;
-let isDirectionNext
-
-const cangeDirectionSlide = () =>{
-  isDirectionNext = !isDirectionNext
-  clearInterval(cangeImgInterval)
-  startInterval(isDirectionNext)
-}
-
 const startInterval = (isDirectionNext) => {
   autoplayStatus = !autoplayStatus;
+  clearInterval(cangeImgInterval)
   cangeImgInterval = setInterval(() => { 
     if(isDirectionNext){
       selectNextElement();
@@ -160,6 +154,11 @@ const startInterval = (isDirectionNext) => {
     }
   }, 1000);
   
+}
+
+const cangeDirectionSlide = () =>{
+  isDirectionNext = !isDirectionNext
+  startInterval(isDirectionNext)
 }
 
 const sliderStart = () => {
